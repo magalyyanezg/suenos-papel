@@ -1129,7 +1129,7 @@ button:hover {
         padding: 5px;  /* Añadimos padding */
     }
     h3 {
-        margin-top: 5%;  /* Ajustamos el margen superior */
+        margin-top: 10%;  /* Ajustamos el margen superior */
         font-size: 2rem;  /* Reducimos el tamaño de la fuente */
     }
 
@@ -1138,6 +1138,7 @@ button:hover {
         width: 100%;  /* Ajustamos el ancho para que ocupe toda la pantalla */
         margin-left: 0;  /* Eliminamos el margen izquierdo */
         align-items: center;  /* Centramos los elementos */
+        margin-top: 15%;
     }
 
     .login-box, .register-box {
