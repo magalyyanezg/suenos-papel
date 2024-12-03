@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sueños de papel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.cdnfonts.com/css/source-sans-pro" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/neutra-text-tf" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/coolvetica-2" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" 
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="icon" href="./assets/favicon.ico">
+    <link rel="manifest" href="manifest.json">
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.1/firebase-database.js"></script>
+    <script src="scripts.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Configuración de Firebase
+        var firebaseConfig = {
+            apiKey: "AIzaSyDdTe6vDoevux02QDzMDHxwcMDdre_UODc",
+            authDomain: "suenos-papel.firebaseapp.com",
+            databaseURL: "https://suenos-papel-default-rtdb.firebaseio.com",
+            projectId: "suenos-papel",
+            storageBucket: "suenos-papel.firebasestorage.app",
+            messagingSenderId: "345869501565",
+            appId: "1:345869501565:web:d5680dcf3b486af6509d14"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Referencia a la base de datos
+        var chatRef = firebase.database().ref('chats');
+
+        // Enviar mensaje
+        function sendMessage(event) {
+            event.preventDefault();
+            var message = document.getElementById('chat-message').value;
+            var user = firebase.auth().currentUser;
+
+            if (message && user) {
+                var chatMessage = {
+                    message: message,
+                    name: user.displayName,
+                    email: user.email,
+                    timestamp: new Date().toISOString()
+                };
+                chatRef.push(chatMessage);
+                document.getElementById('chat-message').value = '';
+            }
+        }
+
+        // Cargar mensajes
+        function loadMessages() {
+            chatRef.on('child_added', function(snapshot) {
+                var message = snapshot.val();
+                var messageElement = document.createElement('div');
+                messageElement.classList.add('message');
+                
+                if (firebase.auth().currentUser && message.email === firebase.auth().currentUser.email) {
+                    messageElement.classList.add('my-message');
+                } else {
+                    messageElement.classList.add('other-message');
+                }
+
+                messageElement.innerHTML = `<strong>${message.name}:</strong> ${message.message} <br><small>${new Date(message.timestamp).toLocaleString()}</small>`;
+                document.getElementById('chat-container').appendChild(messageElement);
+                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+            });
+        }
+
+        // Supervisar el estado de autenticación y cargar mensajes
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                loadMessages();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('chat-form').addEventListener('submit', sendMessage);
+        });
+    </script>
+</head>
+<body>
+    <!--Header-->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <img src="assets/logo.png" alt="Club">
+        </a>
+      
+        <!--Main menu-->
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav class="navbar">
+            <a href="index.html">Inicio</a>
+            <a href="libros.html">Libros</a>
+            <a href="chat.html">Chat</a>
+            <a href="perfil.html">Perfil</a>
+        </nav>
+    </header>
+    <!--Header end-->
+
+    <main>
+        <section>
+            <h2 class="chat">Chat</h2>
+            <div id="chat-container">
+                <!-- Chat content will be dynamically loaded here -->
+            </div>
+            <form id="chat-form">
+                <input type="text" id="chat-message" placeholder="Escribe tu mensaje">
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <!--Footer start-->
+    <section class="footer" id="contact">
+        <hr class="divider">
+        <div class="navm">
+            <nav class="nav">
+                <a href="#">Aviso de privacidad</a>
+            </nav>
+        </div> 
+        <br>
+        <br>
+        <div class="share">
+            <a href="#" class="fab fa-facebook"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-youtube"></a>
+        </div>
+        <br><br>
+        <div class="credit"> <span> Sueños de papel </span> - © 2024. All Rights Reserved.</div>
+    </section>
+    <!--Footer end-->
+</body>
+</html>
