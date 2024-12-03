@@ -1039,5 +1039,220 @@ button:hover {
         padding: 1.5rem;
         text-align: center;
     }
+    main {
+        margin-top: 5%;
+        padding: 10px;
+    }
     
+    .chat {
+        font-size: 3rem;
+    }
+    
+    #chat-container {
+        padding: 5px;
+        height: 200px;
+        margin-bottom: 5px;
+    }
+    
+    #chat-form input,
+    form input {
+        padding: 8px;
+        width: 70%;
+    }
+    
+    #chat-form button,
+    form button {
+        padding: 8px;
+    }
+    .about .head {
+        margin-top: 5%;
+        font-size: 2.5rem;  /* Reducimos el tamaño de la fuente */
+        padding-bottom: 2rem;
+    }
+    
+    .about .row {
+        flex-direction: column;  /* Hacemos que las filas sean columnas en pantallas pequeñas */
+        margin-top: 5%;
+    }
+    
+    .about .row .content {
+        flex: 1 1 100%;  /* Hacemos que el contenido ocupe todo el ancho en pantallas pequeñas */
+        padding: 1rem;
+    }
+    .about .row .content h3 {
+        font-size: 1.2rem;  /* Reducimos el tamaño de la fuente */
+        padding: 0.8rem;
+    }
+    
+    .about .row .content p {
+        font-size: 1.1rem;  /* Reducimos el tamaño de la fuente */
+        padding: 0.8rem;
+    }
+    
+    .web .container {
+        flex-direction: column;  /* Hacemos que los elementos se apilen verticalmente en pantallas pequeñas */
+        padding: 5px;
+        margin-left: 0;
+        grid-gap: 20px;  /* Reducimos el espacio entre los elementos */
+    }
+    .web .container figure {
+        height: 240px;  /* Reducimos la altura */
+        width: 180px;  /* Reducimos el ancho */
+    }
+    
+    .web .container figure img {
+        height: 240px;  /* Ajustamos la altura */
+        width: 180px;  /* Ajustamos el ancho */
+    }
+    
+    .web .container figure .cap {
+        opacity: 0.9;  /* Ajustamos la opacidad para mejor visualización en pantallas pequeñas */
+    }
+    
+    .web .container figure:hover > .cap h3 {
+        margin-top: 30px;  /* Reducimos el margen superior */
+        margin-bottom: 8px;  /* Reducimos el margen inferior */
+    }
+    .web .container figure:hover > img {
+        transform: scale(1.2);  /* Reducimos un poco el efecto de escala */
+    }
+
+    .web .container figure .cap h3 {
+        font-size: 1.5rem;  /* Reducimos el tamaño de la fuente */
+        margin-bottom: 80px;  /* Ajustamos el margen inferior */
+        margin-top: 20px;  /* Ajustamos el margen superior */
+    }
+
+    .web .container figure .cap p {
+        font-size: 12px;  /* Reducimos el tamaño de la fuente */
+        max-width: 180px;  /* Ajustamos el ancho máximo */
+        padding: 5px;  /* Añadimos padding */
+    }
+    h3 {
+        margin-top: 5%;  /* Ajustamos el margen superior */
+        font-size: 2rem;  /* Reducimos el tamaño de la fuente */
+    }
+
+    .form-container {
+        flex-direction: column;  /* Cambiamos la dirección del flex a columna para pantallas pequeñas */
+        width: 100%;  /* Ajustamos el ancho para que ocupe toda la pantalla */
+        margin-left: 0;  /* Eliminamos el margen izquierdo */
+        align-items: center;  /* Centramos los elementos */
+    }
+
+    .login-box, .register-box {
+        width: 80%;  /* Ajustamos el ancho de los divs para pantallas pequeñas */
+        margin-bottom: 20px;  /* Añadimos margen inferior para separación entre divs */
+    }
+
+    h2 {
+        font-size: 1.5rem;  /* Reducimos el tamaño de la fuente */
+    }
+    .input-box {
+        margin-bottom: 15px;  /* Reducimos el margen inferior */
+    }
+
+    .input-box input {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px 0;  /* Ajustamos el padding */
+        margin-bottom: 20px;  /* Ajustamos el margen inferior */
+    }
+
+    .input-box label {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px 0;  /* Ajustamos el padding */
+    }
+
+    .input-box input:focus ~ label,
+    .input-box input:valid ~ label {
+        top: -18px;  /* Ajustamos la posición top */
+        font-size: 10px;  /* Ajustamos el tamaño de la fuente */
+    }
+
+    button {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px;  /* Ajustamos el padding */
+    }
+    #user-name, #user-email {
+        font-size: 18px;  /* Reducimos el tamaño de la letra */
+        margin-bottom: 8%;  /* Ajustamos el margen inferior */
+    }
+
+    #profile p {
+        font-size: 18px;  /* Reducimos el tamaño de la letra */
+        margin-left: 5%;
+        margin-bottom: 8px;  /* Ajustamos el margen inferior */
+        margin-top: 3%;  /* Ajustamos el margen superior */
+    }
+
+    .profile .btn {
+        font-size: 20px;  /* Reducimos el tamaño de la letra */
+        padding: 10px 20px;  /* Ajustamos el padding */
+        margin-top: 3%;  /* Ajustamos el margen superior */
+        margin-left: 5%;  /* Ajustamos el margen izquierdo */
+    }
+    
+    #span1 {
+        height: 1px;  /* Ajustamos la altura para pantallas pequeñas */
+    }
+
+    .profile .btn:hover #span1 {
+        left: 90%;  /* Ajustamos la posición left */
+    }
+
+    #span3 {
+        height: 1px;  /* Ajustamos la altura para pantallas pequeñas */
+    }
+
+    .profile .btn:hover #span3 {
+        right: 90%;  /* Ajustamos la posición right */
+    }
+    #span2 {
+        width: 1px;  /* Ajustamos el ancho para pantallas pequeñas */
+    }
+
+    .profile .btn:hover #span2 {
+        top: 90%;  /* Ajustamos la posición top */
+    }
+
+    #span4 {
+        width: 1px;  /* Ajustamos el ancho para pantallas pequeñas */
+    }
+
+    .profile .btn:hover #span4 {
+        bottom: 90%;  /* Ajustamos la posición bottom */
+    }
+
+    #chat-container .message {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px;
+        margin: 8px;
+    }
+
+    #chat-container .my-message {
+        max-width: 80%;  /* Ajustamos el ancho máximo */
+    }
+    #chat-container .other-message {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px;
+    }
+
+    #chat-container {
+        height: 300px;  /* Ajustamos la altura */
+    }
+
+    .my-message {
+        margin-left: auto;
+        max-width: 80%;  /* Ajustamos el ancho máximo */
+    }
+
+    .other-message {
+        margin-right: auto;
+        max-width: 80%;  /* Ajustamos el ancho máximo */
+    }
+
+    .download-link {
+        font-size: 14px;  /* Reducimos el tamaño de la fuente */
+        padding: 8px 16px;  /* Ajustamos el padding */
+    }
 }
