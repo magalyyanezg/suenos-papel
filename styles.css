@@ -1260,4 +1260,36 @@ button:hover {
     #forms .title {
         margin-top: 5%;
     }
+    .profile h3 {
+        font-size: 1.5rem;  /* Reducimos el tamaño de la letra */
+    }
+
+    .profile p {
+        font-size: 1.2rem;  /* Reducimos el tamaño de la letra */
+        margin-left: 3%;  /* Ajustamos el margen izquierdo */
+    }
+
+    .profile .btn {
+        font-size: 20px;  /* Reducimos el tamaño de la letra */
+        padding: 10px 20px;  /* Ajustamos el padding */
+        margin-top: 3%;  /* Ajustamos el margen superior */
+        margin-left: 3%;  /* Ajustamos el margen izquierdo */
+    }
+
+    #span1, #span3 {
+        height: 1px;  /* Ajustamos la altura */
+    }
+
+    .profile .btn:hover #span1, .profile .btn:hover #span3 {
+        left: 90%;  /* Ajustamos la posición left */
+    }
+
+    #span2, #span4 {
+        width: 1px;  /* Ajustamos el ancho */
+    }
+
+    .profile .btn:hover #span2, .profile .btn:hover #span4 {
+        top: 90%;  /* Ajustamos la posición top */
+        bottom: 90%;  /* Ajustamos la posición bottom */
+    }
 }
