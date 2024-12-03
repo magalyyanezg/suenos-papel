@@ -534,6 +534,7 @@ section{
   .chat {
     color: #ffff;
     font-size: 5rem;
+    margin-top: 20%;
   }
   
   #chat-container {
@@ -1258,10 +1259,11 @@ button:hover {
         padding: 8px 16px;  /* Ajustamos el padding */
     }
     #forms .title {
-        margin-top: 5%;
+        margin-top: 30%;
     }
     .profile h3 {
-        font-size: 1.5rem;  /* Reducimos el tamaño de la letra */
+        margin-top: 30%;
+        font-size: 2rem;  /* Reducimos el tamaño de la letra */
     }
 
     .profile p {
