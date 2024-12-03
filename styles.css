@@ -1065,7 +1065,7 @@ button:hover {
         padding: 8px;
     }
     .about .head {
-        margin-top: 5%;
+        margin-top: 20%;
         font-size: 2.5rem;  /* Reducimos el tamaño de la fuente */
         padding-bottom: 2rem;
     }
@@ -1146,6 +1146,7 @@ button:hover {
     }
 
     h2 {
+        margin-top: 5%;
         font-size: 1.5rem;  /* Reducimos el tamaño de la fuente */
     }
     .input-box {
@@ -1254,5 +1255,8 @@ button:hover {
     .download-link {
         font-size: 14px;  /* Reducimos el tamaño de la fuente */
         padding: 8px 16px;  /* Ajustamos el padding */
+    }
+    #forms .title {
+        margin-top: 5%;
     }
 }
