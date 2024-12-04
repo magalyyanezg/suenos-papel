@@ -1,6 +1,8 @@
+const CACHE_NAME = 'v1';
+
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open('v1').then((cache) => {
+        caches.open(CACHE_NAME).then((cache) => {
             return cache.addAll([
                 '/',
                 '/index.html',
@@ -17,27 +19,32 @@ self.addEventListener('install', (event) => {
         })
     );
 });
-// Activate event: clean up old caches
+
 self.addEventListener('activate', (event) => {
     event.waitUntil(
-      caches.keys().then((keyList) => {
-        return Promise.all(keyList.map((key) => {
-          if (key !== CACHE_NAME) {
-            return caches.delete(key);
-          }
-        }));
-      })
+        caches.keys().then((keyList) => {
+            return Promise.all(keyList.map((key) => {
+                if (key !== CACHE_NAME) {
+                    return caches.delete(key);
+                }
+            }));
+        })
     );
     self.clients.claim();
-  });
+});
 
-  self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', (event) => {
     if (event.request.url.includes('/chats')) {
         return;  // No cachear peticiones al chat en tiempo real
     }
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request).catch(() => {
+            return response || fetch(event.request).then((response) => {
+                return caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, response.clone());
+                    return response;
+                });
+            }).catch(() => {
                 return caches.match('/index.html');
             });
         })
