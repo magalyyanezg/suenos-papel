@@ -20,7 +20,6 @@ self.addEventListener('install', (event) => {
             console.log('[Service Worker] Caching files: ', FILES_TO_CACHE);
             return cache.addAll(FILES_TO_CACHE).catch((error) => {
                 console.error('[Service Worker] Failed to cache: ', error);
-                // Filtrar los archivos que fallaron y continuar con los demás
                 const successfulFiles = FILES_TO_CACHE.filter((file) => {
                     return !error.message.includes(file);
                 });
