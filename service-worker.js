@@ -14,7 +14,8 @@ self.addEventListener('install', (event) => {
                 'assets/icons/icon-192x192.png',
                 'assets/icons/icon-512x512.png',
                 'firebaseConfig.js',
-                'scripts.js'
+                'scripts.js',
+                '/fallback.html'  // Incluir fallback.html en la caché
             ]);
         })
     );
@@ -39,13 +40,21 @@ self.addEventListener('fetch', (event) => {
     }
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request).then((response) => {
+            return response || fetch(event.request).then((networkResponse) => {
                 return caches.open(CACHE_NAME).then((cache) => {
-                    cache.put(event.request, response.clone());
-                    return response;
+                    cache.put(event.request, networkResponse.clone());
+                    return networkResponse;
                 });
             }).catch(() => {
-                return caches.match('/index.html');
+                // Si la solicitud falla, devolver el recurso correspondiente del caché
+                return caches.match(event.request).then((cachedResponse) => {
+                    if (cachedResponse) {
+                        return cachedResponse;
+                    } else if (event.request.mode === 'navigate') {
+                        // Devolver fallback.html para solicitudes de navegación
+                        return caches.match('/fallback.html');
+                    }
+                });
             });
         })
     );
