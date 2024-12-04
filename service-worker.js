@@ -17,15 +17,16 @@ self.addEventListener('install', (event) => {
     console.log('[Service Worker] Install Event processing');
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('[Service Worker] Caching files: ', FILES_TO_CACHE);
-            return cache.addAll(FILES_TO_CACHE).catch((error) => {
-                console.error('[Service Worker] Failed to cache: ', error);
-                // Filtrar los archivos que fallaron y continuar con los demás
-                const successfulFiles = FILES_TO_CACHE.filter((file) => {
-                    return !error.message.includes(file);
-                });
-                return cache.addAll(successfulFiles);
-            });
+            console.log('[Service Worker] Caching individual files');
+            return Promise.all(
+                FILES_TO_CACHE.map((file) => {
+                    return cache.add(file).then(() => {
+                        console.log(`[Service Worker] Successfully cached: ${file}`);
+                    }).catch((error) => {
+                        console.error(`[Service Worker] Failed to cache: ${file}`, error);
+                    });
+                })
+            );
         })
     );
     self.skipWaiting();
@@ -47,6 +48,10 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+    if (event.request.url.startsWith('chrome-extension://')) {
+        console.log('[Service Worker] Skipping chrome-extension request: ', event.request.url);
+        return;
+    }
     console.log('[Service Worker] Fetch event for ', event.request.url);
     event.respondWith(
         caches.match(event.request).then((response) => {
