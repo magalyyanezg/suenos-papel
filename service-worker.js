@@ -14,7 +14,8 @@ self.addEventListener('install', (event) => {
                 'assets/icons/icon-192x192.png',
                 'assets/icons/icon-512x512.png',
                 'firebaseConfig.js',
-                'scripts.js'
+                'scripts.js',
+                '/manifest.json'
             ]);
         })
     );
