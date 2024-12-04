@@ -41,21 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   
-    // Listen for authentication state changes
-    auth.onAuthStateChanged((user) => {
-      if (user && profileContainer) {
-        profileContainer.innerHTML = `
-          <h2>${user.displayName || 'Usuario'}</h2>
-          <img src="${user.photoURL || 'default-profile.png'}" alt="Foto de perfil">
-          <p>${user.email}</p>
-          <button id="logout-button">Cerrar Sesión</button>
-        `;
-        document.getElementById('logout-button').addEventListener('click', () => {
-          auth.signOut();
-        });
-      }
-    });
-  
+
     // Handle login form submission
     if (loginForm) {
       loginForm.addEventListener('submit', (e) => {
