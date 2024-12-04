@@ -10,21 +10,24 @@ const FILES_TO_CACHE = [
     'assets/icons/icon-192x192.png',
     'assets/icons/icon-512x512.png',
     'firebaseConfig.js',
-    'scripts.js'
+    'scripts.js',
+    '/favicon.ico'  
 ];
 
 self.addEventListener('install', (event) => {
     console.log('[Service Worker] Install Event processing');
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log('[Service Worker] Caching files: ', FILES_TO_CACHE);
-            return cache.addAll(FILES_TO_CACHE).catch((error) => {
-                console.error('[Service Worker] Failed to cache: ', error);
-                const successfulFiles = FILES_TO_CACHE.filter((file) => {
-                    return !error.message.includes(file);
-                });
-                return cache.addAll(successfulFiles);
-            });
+            console.log('[Service Worker] Caching individual files');
+            return Promise.all(
+                FILES_TO_CACHE.map((file) => {
+                    return cache.add(file).then(() => {
+                        console.log(`[Service Worker] Successfully cached: ${file}`);
+                    }).catch((error) => {
+                        console.error(`[Service Worker] Failed to cache: ${file}`, error);
+                    });
+                })
+            );
         })
     );
     self.skipWaiting();
