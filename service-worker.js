@@ -31,14 +31,15 @@ self.addEventListener('activate', (event) => {
     self.clients.claim();
   });
 
-self.addEventListener('fetch', (event) => {
-
-  if (event.request.url.includes('/chats')) {
-    return;  // No cachear peticiones al chat en tiempo real
-}
+  self.addEventListener('fetch', (event) => {
+    if (event.request.url.includes('/chats')) {
+        return;  // No cachear peticiones al chat en tiempo real
+    }
     event.respondWith(
         caches.match(event.request).then((response) => {
-            return response || fetch(event.request); 
+            return response || fetch(event.request).catch(() => {
+                return caches.match('/index.html');
+            });
         })
     );
 });
