@@ -7,7 +7,8 @@ const FILES_TO_CACHE = [
     '/libros.html',
     'styles.css',
     'assets/logo.png',
-    'assets/icons/icon-500x500.png',
+    'assets/icons/icon-192x192.png',
+    'assets/icons/icon-512x512.png',
     'firebaseConfig.js',
     'scripts.js'
 ];
